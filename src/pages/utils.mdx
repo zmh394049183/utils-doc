@@ -1,1 +1,63 @@
 # utils
+
+## `debounce`
+
+此函数用于创建一个防抖动函数，用于限制函数的频繁调用。
+
+### 参数
+
+- `func`：一个函数，表示要防抖动的函数。
+- `wait`：一个数字，表示等待的时间间隔（以毫秒为单位）。
+
+### 返回值
+
+一个函数，该函数会在最后一次调用后，等待指定的时间间隔后再次调用原始函数。
+
+### 示例用法
+
+```javascript
+import { debounce } from "@xingdaorong/utils";
+
+// 示例用法
+const debouncedFunction = debounce((input: string) => {
+  console.log(`输入文本: ${input}`);
+}, 1000);
+
+// 在1秒内连续调用函数，只有最后一次调用会触发
+debouncedFunction('A');
+debouncedFunction('B');
+debouncedFunction('C');
+
+// 等待1秒后输出：输入文本: C
+```
+
+## `throttle`
+
+此函数用于创建一个节流函数，以控制函数的执行频率。
+
+### 参数
+
+- `func`：一个函数，表示要进行节流控制的函数。
+- `wait`：一个数字，表示执行的最小时间间隔（以毫秒为单位）。
+
+### 返回值
+
+一个函数，该函数会确保不在短时间内多次调用原始函数
+
+### 示例用法
+
+```javascript
+import { throttle } from "@xingdaorong/utils";
+
+// 示例用法
+const throttledFunction = throttle((input: string) => {
+  console.log(`输入文本: ${input}`);
+}, 1000);
+
+// 在1秒内连续调用函数，函数将按照指定的时间间隔执行
+throttledFunction('A');
+throttledFunction('B');
+throttledFunction('C');
+
+// 等待1秒后输出：输入文本: A
+```

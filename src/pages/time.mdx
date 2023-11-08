@@ -1,1 +1,68 @@
 # time
+
+## `isYesterday`
+
+此函数用于判断给定的时间戳是否是昨天的日期。
+
+### 参数
+
+- `timestamp`：一个数字，表示要检查的时间戳。
+- `now`（可选）：一个数字，表示当前时间的时间戳，默认为当前日期和时间的时间戳。
+
+### 返回值
+
+一个布尔值，如果给定的时间戳是昨天的日期，则返回 `true`，否则返回 `false`。
+
+### 示例用法
+
+```js
+import { isYesterday } from '@xingdaorong/time';
+
+const todayTimestamp = new Date().getTime();
+const yesterdayTimestamp = todayTimestamp - 24 * 60 * 60 * 1000;
+
+const result1 = isYesterday(yesterdayTimestamp, todayTimestamp);
+console.log(result1); // 输出 true
+
+const result2 = isYesterday(todayTimestamp, todayTimestamp);
+console.log(result2); // 输出 false
+```
+
+## `formatTimeView`
+
+此函数用于格式化时间戳，以便以易读的方式表示时间差。
+
+### 参数
+
+- `timestamp`：一个数字，表示要格式化的时间戳。
+- `now`（可选）：一个数字，表示当前时间的时间戳，默认为当前日期和时间的时间戳。
+
+### 返回值
+
+一个字符串，表示格式化后的时间，可以是以下几种形式之一：
+
+- "昨天 HH:MM"：如果给定时间戳是昨天的日期。
+- "刚刚"：如果时间差小于1分钟。
+- "X分钟前"：如果时间差小于1小时，其中X是分钟数。
+- "HH:MM"：如果时间差小于1天，表示具体的时间。
+- "X月X日"：如果时间差大于等于1天，表示月和日。
+
+### 示例用法
+
+```javascript
+import { formatTimeView } from '@xingdaorong/time';
+
+// 示例用法
+const now = new Date().getTime();
+const timestamp1 = now - 30 * 1000; // 30秒前
+console.log(formatTimeView(timestamp1, now)); // 输出 "刚刚"
+
+const timestamp2 = now - 2 * 60 * 60 * 1000; // 2小时前
+console.log(formatTimeView(timestamp2, now)); // 输出 "2小时前"
+
+const timestamp3 = now - 24 * 60 * 60 * 1000; // 1天前
+console.log(formatTimeView(timestamp3, now)); // 输出 "HH:MM"
+
+const timestamp4 = now - 2 * 24 * 60 * 60 * 1000; // 2天前
+console.log(formatTimeView(timestamp4, now)); // 输出 "X月X日"
+```

@@ -1,1 +1,54 @@
 # antd
+
+## `selectFilter`
+
+此函数用于创建一个配置对象，用于筛选选择器（Select）组件的选项。
+
+### 参数
+
+- `value`（可选）：一个字符串值，用于指定要筛选的属性名称，默认为 `'label'`。
+
+### 返回值
+
+一个包含以下属性的对象：
+
+- `filterOption(input: string, option: object): boolean`：一个用于匹配输入值和选项之间的筛选函数。返回 `true` 表示匹配成功，`false` 表示匹配失败。
+  - `input`：用户输入的字符串。
+  - `option`：包含指定属性值的选项对象。
+
+- `showSearch: true`：一个布尔值，表示是否启用搜索功能。
+
+### 示例用法
+
+```jsx
+import { selectFilter } from '@xingdaorong/antd';
+
+<Select {...selectFilter('name')}></Select>
+```
+
+## `cascaderFilter`
+
+此函数用于创建一个配置对象，用于筛选级联选择器（Cascader）组件的选项。
+
+### 参数
+
+- `value`（可选）：一个字符串值，用于指定要筛选的属性名称，默认为 `'children'`。
+
+### 返回值
+
+一个包含以下属性的配置对象：
+
+- `showSearch: object`：一个包含筛选选项的配置对象。
+  - `filter(inputValue: string, path: any[]): boolean`：一个用于匹配输入值与级联路径中的选项之间的筛选函数。返回 `true` 表示匹配成功，`false` 表示匹配失败。
+    - `inputValue`：用户输入的字符串。
+    - `path`：级联路径，包含多个选项。
+
+  - `limit: Number.MAX_SAFE_INTEGER`：一个整数值，表示筛选结果的最大限制。
+
+### 示例用法
+
+```jsx
+import { cascaderFilter } from '@xingdaorong/antd';
+
+<Cascader {...cascaderFilter('name')}></Cascader>
+```
